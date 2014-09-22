@@ -14,10 +14,26 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
+		<div id="grailsLogo" role="banner">
+		<a href="${createLink(controller:store)}" ><asset:image src="library-music-icon.png"  width="80px" alt="gTunes" /></a>
+		
+			<div align="right" style="float:right">
+				<g:if test="${session?.user}">
+					${session.user?.lastName}, ${session.user?.firstName}<br>
+					<g:link url="[controller='user', action='music']">My Music</g:link> |
+					<g:link contoller='store' action='shop'>The Store</g:link> |
+					<a href="#">Profile</a> | 
+					<g:link controller="user" action="logout">Logout</g:link>
+				</g:if>
+				<g:else>
+					<g:link controller="store">Login</g:link>
+				</g:else>
+			</div>
+		</div>
 		<g:layoutBody/>
 		
 		

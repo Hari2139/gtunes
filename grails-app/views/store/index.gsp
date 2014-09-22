@@ -13,10 +13,6 @@
 		<div id="loginBox" class="loginBox">
 			<g:if test="${session?.user}">
 				<div style="margin-top:20px">
-					<div style="float:right">
-						<a href="#">Profile</a> | 
-						<g:link controller="user" action="logout">Logout</g:link><br>
-					</div>
 					Welcome back ${session?.user?.firstName} !<br><br>
 					You have purchased ${session?.user?.purchasedSongs?.size() ?: 0} songs.<br>
 				</div>
@@ -34,13 +30,7 @@
 		</div>
 		
 		<div id="navPane">
-			<g:if test="${session?.user}">
-				<ul>
-					<li><g:link url="[controller='user', action='music']">My Music</g:link></li>
-					<li><g:link url="[contoller='store', action='shop']">The Store</g:link></li>
-				</ul>
-			</g:if>
-			<g:else>
+			<g:unless test="${session?.user}">
 				<div id="registerPane">
 					<br><br>Need an account?<br>
 					Sign up now to start your own personal Music collection!<br>
@@ -49,7 +39,7 @@
 					</g:link>
 					<br><br>
 				</div>
-			</g:else>
+			</g:unless>
 		</div>
 	</body>
 </html>

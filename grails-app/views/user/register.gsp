@@ -1,4 +1,4 @@
-<%@ page import="com.gtunes.User" %>
+<%@ page import="com.gtunes.MyUser" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -36,6 +36,10 @@
 				<tr>
 					<td class="label">Last name:</td>
 					<td><g:textField name="lastName" value="${user?.lastName}"/> </td>
+				</tr>
+				<tr>
+					<td class="label">Email:</td>
+					<td><g:textField name="email" value="${user?.email}"/> </td>
 				</tr>
 				<tr><td></td><td><g:submitButton name="register" value="Register"/> </td></tr>
 			</table>
