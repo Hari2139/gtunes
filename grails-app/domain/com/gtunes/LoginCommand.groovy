@@ -5,9 +5,9 @@ class LoginCommand {
 	String password
 	private u
 
-	User getUser() {
+	MyUser getUser() {
 		if(!u && login) {
-			u = User.findByLogin(login, [fetch:[purchasedSongs:'join']])	
+			u = MyUser.findByLogin(login, [fetch:[purchasedSongs:'join']])
 		}
 		return u
 	}
