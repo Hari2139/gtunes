@@ -9,4 +9,11 @@ class Album {
 		title blank:false
 		genre blank: false, nullable: false
 	}
+
+	static mapping = {  songs sort: 'title' //This is same as "Songs" implementing 'Comparable' interface
+	}
+
+	String toString() {
+		title
+	}
 }
