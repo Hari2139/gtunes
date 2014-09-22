@@ -1,13 +1,12 @@
 package com.gtunes
 
-import grails.test.mixin.Mock
-import grails.test.mixin.TestFor
+import grails.test.mixin.*
 import spock.lang.Specification
 
 @TestFor(UserController)
 //@Mock will instruct framework to add GORM API to this domain class and provide a full in-memory
 //implementation of GORM
-@Mock([User, LoginCommand])
+@Mock([MyUser, LoginCommand])
 class UserControllerSpec extends Specification {
 
 	void "Test passwords do not match"() {
@@ -78,7 +77,7 @@ class UserControllerSpec extends Specification {
 
 	void "Test invalid password"() {
 		request.method = 'POST'
-		def user = new User(login: 'mitra', password:'reddy', firstName: 'Mitra', lastName:'Vinda')
+		def user = new MyUser(login: 'mitra', password:'reddy', firstName: 'Mitra', lastName:'Vinda')
 		user.save()
 		params.login = 'mitra'
 		params.password = 'dummy'
@@ -98,7 +97,7 @@ class UserControllerSpec extends Specification {
 
 	void "Test login success"() {
 		request.method = 'POST'
-		def user = new User(login: 'mitra', password:'reddy', firstName: 'Mitra', lastName:'Vinda')
+		def user = new MyUser(login: 'mitra', password:'reddy', firstName: 'Mitra', lastName:'Vinda')
 		user.save()
 		params.login = 'mitra'
 		params.password = 'reddy'

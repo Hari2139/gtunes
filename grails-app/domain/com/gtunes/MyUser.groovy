@@ -1,10 +1,11 @@
 package com.gtunes
 
-class User {
+class MyUser {
 	String login
 	String password
 	String firstName
 	String lastName
+	String email
 
 	static hasMany = [purchasedSongs: Song]
 
@@ -13,5 +14,6 @@ class User {
 		password blank:false, size:3..15, matches:/[\S]+/
 		firstName blank:false
 		lastName blank:false
+		email email:true, blank:false
 	}
 }

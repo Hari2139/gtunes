@@ -11,20 +11,31 @@ class UserController {
 	static allowedMethods = [register:
 		["POST", "GET"]]
 
-
-
 	def register(){
 		if(request.method == 'POST') {
-			def u = new User(params)
+			def u = new MyUser(params)
 			if(u.password != params.confirm) {
 				u.errors.rejectValue("password", "user.password.dontmatch")
 				return [user:u]
 			} else if (u.save()) {
 				session.user = u
+				sendEmailConfirmation(u)
 				redirect controller: "store"
 			} else {
 				return [user:u]
 			}
+		}
+	}
+
+	def sendEmailConfirmation(MyUser u) {
+		try{
+			sendMail {
+				to u.email
+				subject 'Registration Complete!'
+				body view: '/emails/confirmRegistration', model: [user:u]
+			}
+		} catch (Exception ex) {
+			logger.error('Error sending email')
 		}
 	}
 
@@ -39,5 +50,10 @@ class UserController {
 		} else {
 			render view:'/store/index'
 		}
+	}
+
+	def logout() {
+		session.user = null
+		render view:'/store/index'
 	}
 }
