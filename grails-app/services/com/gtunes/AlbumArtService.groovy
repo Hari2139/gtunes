@@ -11,7 +11,7 @@ class AlbumArtService {
 	//What this does is create a Spring proxy that wraps each method call
 	//and provides transaction management
 	static transactional = false
-	static final DEFAULT_ALBUM_ART_IMAGE = "/images/default.jpg"
+	static final DEFAULT_ALBUM_ART_IMAGE = "/assets/default.jpg"
 
 	@Cacheable("albumArt") //Name of the cache is optional
 	def getAlbumArt(String artistName, String albumTitle) {
@@ -26,9 +26,8 @@ class AlbumArtService {
 				def records = json.results
 				log.debug records.collect {it.artistName}
 				//find the record that has the correct artist name
-				def matchingRecord = records.find {
-					it.artistName == artistName && it.collectionName == albumTitle
-				}
+				def matchingRecord = records.find { //it.artistName == artistName &&
+					it.collectionName == albumTitle }
 				albumArt = matchingRecord?.artworkUrl100 ?: DEFAULT_ALBUM_ART_IMAGE
 			} catch (Exception e) {
 				e.printStackTrace()
