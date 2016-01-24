@@ -70,6 +70,7 @@ grails.project.dependency.resolution = {
 		compile ":rest-client-builder:1.0.2"
 		compile ":mail:1.0.7"
 		runtime ":jmx:0.9"
+		runtime ':resources:1.2.14'
 
 		// Uncomment these to enable additional asset-pipeline capabilities
 		//compile ":sass-asset-pipeline:1.7.4"

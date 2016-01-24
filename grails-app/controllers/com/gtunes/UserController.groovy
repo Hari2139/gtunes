@@ -42,13 +42,16 @@ class UserController {
 	def login(LoginCommand cmd){
 		if(request.method == 'POST') {
 			if(cmd.hasErrors()) {
-				render model:[loginCmd:cmd], view:'/store/index'
+				//render model:[loginCmd:cmd], view:'/store/index'
+				render template: '/store/loginBox', model:[loginCmd:cmd]
 			} else {
 				session.user = cmd.user
-				redirect controller: "store"
+				//redirect controller: "store"
+				render template: '/store/welcomeMessage'
 			}
 		} else {
-			render view:'/store/index'
+			//render view:'/store/index'
+			render template: '/store/loginBox'
 		}
 	}
 

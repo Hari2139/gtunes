@@ -19,6 +19,7 @@
 	href="${assetPath(src: 'apple-touch-icon-retina.png')}">
 <asset:stylesheet src="application.css" />
 <asset:javascript src="application.js" />
+<asset:javascript src="jquery.form.min.js" />
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <g:layoutHead />
@@ -41,16 +42,17 @@
 			</g:else>
 		</div>
 	</div>
-	<div style="padding-left: 30px;">
+	<div style="padding-left: 30px; padding-right: 30px;">
 		<g:layoutBody />
 	</div>
 
 
-	<div class="footer" role="contentinfo" align="center">&copy;2015
-		gTunes</div>
+	<div class="footer" role="contentinfo" align="center">&copy;
+		gTunes 2015</div>
 	<div id="spinner" class="spinner" style="display: none;">
 		as
 		<g:message code="spinner.alt" default="Loading&hellip;" />
 	</div>
+	<r:layoutResources />
 </body>
 </html>
